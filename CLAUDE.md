@@ -22,8 +22,8 @@ Otherwise, refer to:
 - Admin dashboard at `/admin`
 - Store API v3 at `/api/v3/store/`
 - Admin API v3 at `/api/v3/admin/`
-- Background jobs via Sidekiq at `/sidekiq`
-- Search via Meilisearch (when `MEILISEARCH_URL` is set)
+- Background jobs via Solid Queue (in Postgres, runs inside Puma by default) — dashboard at `/jobs`
+- Product search runs on the database by default; optional Meilisearch provider activates when `MEILISEARCH_URL` is set (compose service ships commented out)
 
 ## Key Files
 
@@ -131,7 +131,7 @@ end
 
 ```bash
 bin/setup              # Install dependencies, prepare database, index search
-bin/dev                # Start all processes (web, admin CSS watcher, Sidekiq)
+bin/dev                # Start web (jobs run in-process) + admin CSS watcher
 bin/rails console      # Rails console
 bin/rails db:migrate   # Run migrations
 bin/rails db:seed      # Seed the databases
