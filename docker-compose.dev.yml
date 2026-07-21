@@ -73,7 +73,6 @@ x-app: &app
 services:
   postgres:
     image: postgres:18-alpine
-    platform: linux/arm64
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
       PGDATA: /var/lib/postgresql/18/docker
